@@ -1,0 +1,17 @@
+BetterTouchTool
+HyperSwitch
+Spectacle
+Sublime Text
+Monosnap
+
+nodejs
+homebrew
+brew install git bash-completion
+
+FileZilla
+Skitch
+Parallels
+MicrosoftRemoteDesktop
+Karabiner
+Reflector 2
+
