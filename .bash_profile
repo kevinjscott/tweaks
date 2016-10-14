@@ -21,19 +21,17 @@
 
 #   Change Prompt
 #   ------------------------------------------------------------
-#    export PS1="________________________________________________________________________________\n| \w @ \h (\u) \n| => "
-#    export PS2="| => "
 #    source /usr/local/git/contrib/completion/git-prompt.sh
 #    source /usr/local/git/contrib/completion/git-completion.bash
-    source ~/Google\ Drive/Tweaks\,\ customizations/mac/git-completion.bash
-GIT_PS1_SHOWDIRTYSTATE=true
+    source ~/.git-prompt.sh
+    source ~/.git-completion.bash
+    GIT_PS1_SHOWDIRTYSTATE=true
+
     export PS1='\[\033]0;$MSYSTEM:${PWD//[^[:ascii:]]/?}\007\]\n\[\033[32m\]\u in \[\033[33m\]\w$(__git_ps1)\[\033[0m\]\n$ '
 
-#export PS1='[\u@mbp \w$(__git_ps1)]\$ '
-
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
+#  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#    . $(brew --prefix)/etc/bash_completion
+#  fi
 
 
 
@@ -63,7 +61,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 #   2.  MAKE TERMINAL BETTER
 #   -----------------------------
 
-alias ngi="sudo npm install -g"
+alias ngi="npm install -g"
 alias appr="adb shell pm clear org.scte.mobile; adb shell am start -n org.scte.mobile/org.scte.mobile.MainActivity"
 alias appi="adb uninstall org.scte.mobile; ionic run android"
 alias appil="adb uninstall org.scte.mobile; ionic run android -lc"
