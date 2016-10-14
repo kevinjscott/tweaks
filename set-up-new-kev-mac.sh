@@ -10,6 +10,9 @@ ln -s ~/Google\ Drive/Tweaks\,\ customizations/mac/.gitconfig ~/.gitconfig
 ln -s ~/Google\ Drive/Tweaks\,\ customizations/mac/.bash_profile ~/.bash_profile
 ln -s ~/Google\ Drive/Tweaks\,\ customizations/mac/.inputrc ~/.inputrc
 
+ln -s ~/Google\ Drive/Tweaks\,\ customizations/mac/.git-completion.bash ~/.git-completion.bash
+ln -s ~/Google\ Drive/Tweaks\,\ customizations/mac/.git-prompt.sh ~/.git-prompt.sh
+
 mv ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap.orig
 ln -s ~/Google\ Drive/Tweaks\,\ customizations/sublime/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
 
