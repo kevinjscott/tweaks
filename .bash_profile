@@ -70,11 +70,14 @@ alias nl="npm list --depth=0 2>/dev/null"
 alias ipconfig='ifconfig | grep "inet "'
 alias ip='ipconfig'
 alias bfg='java -jar bfg.jar'
+alias dsh='docker exec -it $(docker ps -lq) /bin/bash'
 alias rm='rm -rf'
 alias q='exit'
-alias edit='subl'                           # edit:         Opens any file in sublime editor
 alias subl='open -b "com.sublimetext.3"'
+alias edit='subl'                           # edit:         Opens any file in sublime editor
+alias e='subl'
 alias ios='ionic run ios --livereload --consolelogs --serverlogs'
+alias environment='env $(cat .env | xargs)'
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
@@ -90,12 +93,16 @@ alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias ~="cd ~"                              # ~:            Go Home
-alias c='clear'                             # c:            Clear terminal display
+#alias c='clear'                             # c:            Clear terminal display
 alias which='type -all'                     # which:        Find executables
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 alias show_options='shopt'                  # Show_options: display bash options settings
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+complete -d cd
+complete -d ll
+complete -d ls
+c () { touch "$1" && edit "$1"; }        # medit:        Makes new file and edits it
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
@@ -266,8 +273,8 @@ alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when boo
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
 #   -------------------------------------------------------------------
-    alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
-    alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+    alias finderShowHidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+    alias finderHideHidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
 #   cleanupLS:  Clean up LaunchServices to remove duplicates in the "Open With" menu
 #   -----------------------------------------------------------------------------------
@@ -334,7 +341,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # }
 # alias mcd='mkd'
 
-cd ~/projects/sctemobile
+cd ~/projects
     
 ##
 # Your previous /Users/kevinjscott/.bash_profile file was backed up as /Users/kevinjscott/.bash_profile.macports-saved_2016-08-01_at_22:19:50
