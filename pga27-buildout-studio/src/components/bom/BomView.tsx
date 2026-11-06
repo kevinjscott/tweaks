@@ -101,7 +101,7 @@ export function BomView() {
         push(
           key,
           <span>
-            <span className="text-gold-soft">v2.2 zone {l.area ?? "—"}</span>
+            <span className="text-gold-soft">{l.area ? `v2.2 zone ${l.area}` : "Added / derived lines (no v2.2 zone code)"}</span>
             {names.length ? <span className="ml-2 text-[11.5px] font-normal text-muted">{names.slice(0, 5).join(", ")}{names.length > 5 ? ` +${names.length - 5} more` : ""}</span> : null}
           </span>,
           l,

@@ -68,6 +68,7 @@ const NOTES: { re: RegExp; note: string }[] = [
   { re: /claude-sonnet/, note: "Fast, very reliable tool calling with strong vision. Best speed/quality balance for interactive scene edits." },
   { re: /gpt-6\.\d+-sol|gpt-6-sol/, note: "OpenAI frontier tier: strong geometry/arithmetic reasoning, vision and dependable structured tool calls." },
   { re: /gpt-6\.\d+-terra|gpt-6-terra/, note: "Newest OpenAI 6.x generation: frontier vision + tool use at a lower price than the sol tier." },
+  { re: /gpt-6.*astra/, note: "OpenAI top-priced tier: deepest reasoning for hard multi-step geometry and vision; slowest and most expensive." },
   { re: /gemini-4/, note: "Google flagship: natively multimodal (images, video, PDF), excellent at reading plan drawings and spatial layouts; 1M context." },
   { re: /gemini-3/, note: "Google Gemini: fast with vision and tools; good for quick edits and plan reading." },
   { re: /grok/, note: "xAI Grok: strong reasoning and vision, good at coordinate math and parallel tool calls." },
@@ -90,18 +91,20 @@ export function rankModels(all: GatewayModel[], now = Date.now()): RankedModel[]
   const eligible = all.filter((m) => m.tools && m.vision && !EXCLUDE.test(m.id) && !/-\d{4}$/.test(m.id));
   const scored = eligible.map((m) => {
     const out = m.outPerM ?? 0;
-    const tier = out > 0 ? Math.min(1.4, Math.max(0, Math.log10(out) + 0.2)) : 0;
+    // price is only a rough capability proxy, so it saturates at ~$10 per 1M output tokens
+    const tier = out > 0 ? Math.min(1.2, Math.max(0, Math.log10(out) + 0.2)) : 0;
     const ageDays = m.released ? (now - m.released) / 86_400_000 : 999;
     const recency = Math.max(0, 1 - ageDays / 240);
     const ctx = m.contextWindow && m.contextWindow >= 500_000 ? 0.1 : 0;
-    const score = tier * 1.1 + recency * 0.9 + (FRONTIER_BONUS[m.provider] ?? 0) + ctx + (m.reasoning ? 0.1 : 0);
+    const score = tier * 1.1 + recency * 1.0 + (FRONTIER_BONUS[m.provider] ?? 0) + ctx + (m.reasoning ? 0.1 : 0);
     return { m, score };
   });
   scored.sort((a, b) => b.score - a.score);
   const picked: { m: GatewayModel; score: number }[] = [];
   const perProvider = new Map<string, number>();
   const seenFamily = new Set<string>();
-  const family = (id: string) => id.replace(/-\d{4}$/, "").replace(/-(preview|latest)$/, "");
+  // same model line across versions (gpt-6-sol / gpt-6.1-sol) counts once; the newest wins because scores favour recency
+  const family = (id: string) => id.replace(/-\d{4}$/, "").replace(/-(preview|latest)$/, "").replace(/[\d.]+/g, "#");
   const take = (e: { m: GatewayModel; score: number }, cap: number) => {
     const p = e.m.provider;
     if ((perProvider.get(p) ?? 0) >= cap || seenFamily.has(family(e.m.id))) return false;

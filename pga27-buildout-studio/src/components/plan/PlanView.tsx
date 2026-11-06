@@ -723,7 +723,7 @@ export function PlanView() {
 
       <div className="pointer-events-none absolute inset-0">
         <div className="pointer-events-auto absolute bottom-3 left-3 top-3 z-10 w-[270px] overflow-hidden rounded-lg border border-line bg-navy-900/92 shadow-xl backdrop-blur">
-          <LayersPanel onPick={(s) => centerOn(s)} />
+          <LayersPanel onPick={(s) => centerOn(s)} placeAt={() => ({ x: viewRef.current.cx, y: viewRef.current.cy })} />
         </div>
 
         <div className="pointer-events-auto absolute left-[290px] right-3 top-3 z-20 flex flex-wrap items-center gap-1.5 rounded-lg border border-line bg-navy-900/92 px-2 py-1.5 shadow-xl backdrop-blur">

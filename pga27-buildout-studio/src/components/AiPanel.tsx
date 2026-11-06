@@ -90,7 +90,8 @@ export function AiPanel({ hidden }: { hidden?: boolean }) {
   const preview = useEffectiveScene();
   const store = useStudio;
 
-  const [status, setStatus] = useState<{ configured: boolean; auth: string; message: string } | null>(null);
+  const [status, setStatus] = useState<{ configured: boolean; auth: string; message: string; requiresCode?: boolean } | null>(null);
+  const [code, setCode] = useState("");
   const [models, setModels] = useState<ModelsPayload | null>(null);
   const [modelId, setModelId] = useState<string>("anthropic/claude-sonnet-5.5");
   const [attachShot, setAttachShot] = useState(true);
@@ -125,6 +126,7 @@ export function AiPanel({ hidden }: { hidden?: boolean }) {
     () =>
       new DefaultChatTransport({
         api: "/api/chat",
+        headers: () => ({ "x-studio-code": window.sessionStorage.getItem("pga27.code") ?? "" }),
         prepareSendMessagesRequest: ({ messages }) => {
           const st = store.getState();
           const effective = st.proposal ? applyOps(st.scene, st.proposal.ops) : st.scene;
@@ -243,6 +245,12 @@ export function AiPanel({ hidden }: { hidden?: boolean }) {
         {model && toolsOk && !visionOk ? <div className="mt-1.5 text-[11px] text-muted">No vision on this model: viewport screenshots are not sent.</div> : null}
       </div>
 
+      {status?.requiresCode ? (
+        <div className="mx-3 mt-3 flex gap-2">
+          <input className="input" type="password" placeholder="Studio access code" value={code} onChange={(e) => { setCode(e.target.value); window.sessionStorage.setItem("pga27.code", e.target.value); }} />
+        </div>
+      ) : null}
+
       {status && !status.configured ? (
         <div className="m-3 rounded-lg border border-gold/50 bg-gold/10 p-3 text-[12.5px] leading-relaxed text-ink">
           <div className="mb-1 font-semibold text-gold-soft">AI Gateway not configured</div>
@@ -264,7 +272,7 @@ export function AiPanel({ hidden }: { hidden?: boolean }) {
               Describe a change in plain language. The model drives the scene through typed tools (add / move / resize / rotate / delete, camera, flythroughs, BOM, measure). Edits appear as a previewable diff you accept or reject, with full undo/redo.
             </div>
             {SUGGESTIONS.map((s) => (
-              <button key={s} className="block w-full rounded-lg border border-line bg-navy-850 px-3 py-2 text-left text-[12.5px] text-ink hover:border-gold" onClick={() => void send(s)} disabled={!status?.configured}>
+              <button key={s} className="block w-full rounded-lg border border-line bg-navy-850 px-3 py-2 text-left text-[12.5px] text-ink hover:border-gold disabled:cursor-not-allowed disabled:opacity-45" onClick={() => void send(s)} disabled={!status?.configured}>
                 {s}
               </button>
             ))}

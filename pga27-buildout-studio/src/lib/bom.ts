@@ -153,6 +153,17 @@ export function computeBom(scene: SceneState): BomResult {
       groups.set(sig, [...(groups.get(sig) ?? []), s]);
     }
     const keep = groups.get(baseSig) ?? [];
+    if (keep.length === 0 && groups.size === 1) {
+      const [[, arr]] = Array.from(groups);
+      const s0 = arr[0];
+      base.qty = arr.length * perInstance;
+      base.structureIds = arr.map((s) => s.id);
+      base.spec = [item.type, fmtDimsMetric(s0.w, s0.l, s0.h), item.color].filter(Boolean).join(" · ");
+      base.basis = "resized";
+      base.notes = `Resized from ${item.dims ?? "v2.2 dimensions"}`;
+      out.push(base);
+      continue;
+    }
     base.qty = keep.length * perInstance;
     base.structureIds = keep.map((s) => s.id);
     if (base.qty !== base.baseQty) base.basis = "instance count";
@@ -366,16 +377,20 @@ export function bomDiffLines(res: BomResult) {
 
 export const BOM_CATEGORIES = Array.from(new Set(BASE_ITEMS.map((i) => i.category).filter(Boolean))) as string[];
 
+const areaNameCache = new Map<string, string[]>();
+
 export function areaStructureNames(area: string | null): string[] {
   if (!area) return [];
+  const hit = areaNameCache.get(area);
+  if (hit) return hit;
   const names: string[] = [];
-  for (const info of Object.values(SOURCE_INFO)) {
-    if (info.zone === area) {
-      const s = BASE_STRUCTURES.find((b) => b.id === info.id);
-      if (s && info.id.startsWith("s-")) names.push(s.name);
-    }
+  for (const s of BASE_STRUCTURES) {
+    const info = SOURCE_INFO[s.id];
+    if (info?.zone === area && s.id.startsWith("s-")) names.push(s.name);
   }
-  return Array.from(new Set(names));
+  const uniq = Array.from(new Set(names));
+  areaNameCache.set(area, uniq);
+  return uniq;
 }
 
 export function csvEscape(v: unknown) {

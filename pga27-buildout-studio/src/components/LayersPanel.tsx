@@ -4,10 +4,12 @@ import { useMemo, useState } from "react";
 import { LAYERS } from "@/lib/layers";
 import { isPlaced } from "@/lib/scene";
 import { frameStructure } from "@/lib/tours";
+import { getCameraPose } from "@/lib/viewport";
+import { round } from "@/lib/geo";
 import type { Structure } from "@/lib/types";
 import { useEffectiveScene, useStudio } from "@/store/studio";
 
-export function LayersPanel({ onPick }: { onPick?: (s: Structure) => void }) {
+export function LayersPanel({ onPick, placeAt }: { onPick?: (s: Structure) => void; placeAt?: () => { x: number; y: number } | null }) {
   const scene = useEffectiveScene();
   const layerVisible = useStudio((s) => s.layerVisible);
   const toggleLayer = useStudio((s) => s.toggleLayer);
@@ -16,6 +18,20 @@ export function LayersPanel({ onPick }: { onPick?: (s: Structure) => void }) {
   const flyTo = useStudio((s) => s.flyTo);
   const selection = useStudio((s) => s.selection);
   const [q, setQ] = useState("");
+  const commit = useStudio((s) => s.commit);
+  const committed = useStudio((s) => s.scene);
+  const proposal = useStudio((s) => s.proposal);
+  const notify = useStudio((s) => s.notify);
+  const place = (s: Structure) => {
+    if (proposal) return notify("info", "Accept or reject the pending AI proposal first.");
+    const at = placeAt ? placeAt() : (() => { const p = getCameraPose(); return p ? { x: p.target.x, y: p.target.y } : null; })();
+    if (!at) return notify("error", "No view available to place at.");
+    commit(`Place ${s.name} (manual, no source position)`, {
+      ...committed,
+      structures: committed.structures.map((x) => (x.id === s.id ? { ...x, x: round(at.x, 1), y: round(at.y, 1), note: "Placed manually: the source gives no position for this record." } : x)),
+    });
+    select([s.id]);
+  };
   const counts = useMemo(() => {
     const c: Record<string, number> = {};
     for (const s of scene.structures) c[s.layer] = (c[s.layer] ?? 0) + 1;
@@ -70,7 +86,19 @@ export function LayersPanel({ onPick }: { onPick?: (s: Structure) => void }) {
             >
               <span className="h-2 w-2 shrink-0 rounded-sm" style={{ background: layer.color }} />
               <span className="min-w-0 flex-1 truncate text-[12px]">{s.name}</span>
-              {!isPlaced(s) ? <span className="chip border-warn/40 text-warn">unplaced</span> : <span className="text-[10.5px] text-muted">{s.w != null && s.l != null ? `${Math.round(s.w)}×${Math.round(s.l)}` : "dims?"}</span>}
+              {!isPlaced(s) ? (
+                <span
+                  role="button"
+                  className="chip cursor-pointer border-warn/50 text-warn hover:bg-warn/15"
+                  title="No position in the source. Place it at the centre of the current view."
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    place(s);
+                  }}
+                >
+                  place…
+                </span>
+              ) : <span className="text-[10.5px] text-muted">{s.w != null && s.l != null ? `${Math.round(s.w)}×${Math.round(s.l)}` : "dims?"}</span>}
             </button>
           );
         })}

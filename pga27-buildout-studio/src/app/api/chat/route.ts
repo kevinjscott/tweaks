@@ -37,7 +37,15 @@ export async function POST(req: Request) {
     );
   }
 
+  const code = process.env.STUDIO_ACCESS_CODE;
+  if (code && req.headers.get("x-studio-code") !== code) {
+    return Response.json({ error: "access_code_required", message: "This deployment requires the Studio access code. Enter it in the Assistant panel." }, { status: 401 });
+  }
+
   const body = (await req.json()) as ChatBody;
+  if (!Array.isArray(body.messages) || body.messages.length > 80 || !body.scene?.structures || body.scene.structures.length > 1500) {
+    return Response.json({ error: "bad_request", message: "Invalid chat request (messages or scene too large)." }, { status: 400 });
+  }
   const modelId = body.modelId || "anthropic/claude-sonnet-5.5";
   const ctx = { scene: body.scene };
   const hasImage = !!body.vision && body.messages.some((m) => m.parts.some((p) => p.type === "file"));

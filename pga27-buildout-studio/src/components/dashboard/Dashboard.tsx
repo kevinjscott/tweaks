@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SOURCE_INFO, sharedAnchorCount } from "@/lib/baseline";
 import { BASE_ITEMS, BOM_META, computeBom, summarizeBom } from "@/lib/bom";
 import { fmtNum, m2ToFt2, round } from "@/lib/geo";
@@ -75,7 +75,8 @@ export function Dashboard() {
     [scene],
   );
   const zoneMismatch = useMemo(() => Object.values(SOURCE_INFO).filter((i) => i.zone && i.sheet && i.zone !== i.sheet).length, []);
-  const days = daysUntil("2027-05-17T00:00:00-05:00");
+  const [days, setDays] = useState<number | null>(null);
+  useEffect(() => setDays(daysUntil("2027-05-17T00:00:00-05:00")), []);
 
   return (
     <div className="h-full overflow-auto">
@@ -93,7 +94,7 @@ export function Dashboard() {
             </div>
             <div className="flex gap-3">
               <div className="panel px-5 py-3 text-center">
-                <div className="font-display text-[34px] font-semibold leading-none text-gold-soft">{days > 0 ? days : 0}</div>
+                <div className="font-display text-[34px] font-semibold leading-none text-gold-soft">{days == null ? "—" : Math.max(0, days)}</div>
                 <div className="label mt-1">days to event week</div>
               </div>
               <div className="panel px-5 py-3 text-center">

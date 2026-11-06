@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepare-data": "node scripts/prepare-data.mjs"
   },
   "dependencies": {
-    "@ai-sdk/gateway": "^4.0.137",
     "@ai-sdk/react": "^4.0.168",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
@@ -31,5 +31,9 @@
     "postcss": "^8.5.32",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2"
-  }
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "description": "Buildout studio for the 2027 PGA Championship at Fields Ranch East, PGA Frisco"
 }

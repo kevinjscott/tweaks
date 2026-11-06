@@ -174,6 +174,7 @@ export function StructureInspector({ id, onClose, compact }: { id: string; onClo
                 ) : (
                   <div className="mt-1">Anchor at master-plan px ({info.px}, {info.py}). Not a surveyed footprint centre.</div>
                 )}
+                {s.note ? <div className="mt-1 text-gold-soft">{s.note}</div> : null}
                 {px ? <MasterCrop px={px.px} py={px.py} /> : null}
               </div>
             ) : (
