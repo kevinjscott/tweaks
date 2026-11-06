@@ -1,0 +1,318 @@
+{
+  "image_dimensions": [
+    4000,
+    3112
+  ],
+  "images": [
+    {
+      "file": "images/overlay-02.jpg",
+      "original_pdf_page": 2,
+      "description": "General conditions, elevation/staking keys, constituent colors"
+    },
+    {
+      "file": "images/overlay-04.jpg",
+      "original_pdf_page": 4,
+      "description": "Drawing index: entrance, practice range, district, resort, holes 1/7 and 4"
+    },
+    {
+      "file": "images/overlay-05.jpg",
+      "original_pdf_page": 5,
+      "description": "Drawing index: holes 6, 9/18, 11/12, 14/15, 16/17 and Teel compounds"
+    },
+    {
+      "file": "images/overlay-06.jpg",
+      "original_pdf_page": 6,
+      "description": "Drawing index: concessions, grandstands, restrooms, videoboards, player oases"
+    },
+    {
+      "file": "images/overlay-08.jpg",
+      "original_pdf_page": 8,
+      "description": "1.1 West bus slips, main terminal"
+    },
+    {
+      "file": "images/overlay-09.jpg",
+      "original_pdf_page": 9,
+      "description": "1.2 Ticket offices, scan gates, security, accessibility and check-ins"
+    },
+    {
+      "file": "images/overlay-10.jpg",
+      "original_pdf_page": 10,
+      "description": "1.3 PGA Shops, reinforced floor, loading docks, shop operations, shipping/receiving"
+    },
+    {
+      "file": "images/overlay-12.jpg",
+      "original_pdf_page": 12,
+      "description": "2.1 PGA HQ levels 1 and 2"
+    },
+    {
+      "file": "images/overlay-13.jpg",
+      "original_pdf_page": 13,
+      "description": "2.2 PGA HQ levels 3 and 4"
+    },
+    {
+      "file": "images/overlay-14.jpg",
+      "original_pdf_page": 14,
+      "description": "2.3 Media Center, desks, offices, registration, dining, kitchen and dock"
+    },
+    {
+      "file": "images/overlay-15.jpg",
+      "original_pdf_page": 15,
+      "description": "2.4 Volunteer HQ and pantry"
+    },
+    {
+      "file": "images/overlay-16.jpg",
+      "original_pdf_page": 16,
+      "description": "2.5 Coaching Center / Club Magenta lower level"
+    },
+    {
+      "file": "images/overlay-17.jpg",
+      "original_pdf_page": 17,
+      "description": "2.6 Coaching Center / Club Magenta upper level"
+    },
+    {
+      "file": "images/overlay-18.jpg",
+      "original_pdf_page": 18,
+      "description": "2.7 Choctaw Club / District Icehouse"
+    },
+    {
+      "file": "images/overlay-20.jpg",
+      "original_pdf_page": 20,
+      "description": "3.1 District Market, Choctaw activation, BOH"
+    },
+    {
+      "file": "images/overlay-21.jpg",
+      "original_pdf_page": 21,
+      "description": "3.2 Lounge by Topgolf / SRS Distribution hospitality"
+    },
+    {
+      "file": "images/overlay-22.jpg",
+      "original_pdf_page": 22,
+      "description": "3.3 Caddie dining and player recovery"
+    },
+    {
+      "file": "images/overlay-23.jpg",
+      "original_pdf_page": 23,
+      "description": "3.4 Clubhouse basement"
+    },
+    {
+      "file": "images/overlay-24.jpg",
+      "original_pdf_page": 24,
+      "description": "3.5 Clubhouse level 1"
+    },
+    {
+      "file": "images/overlay-25.jpg",
+      "original_pdf_page": 25,
+      "description": "3.6 Clubhouse level 2"
+    },
+    {
+      "file": "images/overlay-27.jpg",
+      "original_pdf_page": 27,
+      "description": "4.1 Omni main hotel"
+    },
+    {
+      "file": "images/overlay-28.jpg",
+      "original_pdf_page": 28,
+      "description": "4.2 Omni main hotel levels 1 and 2"
+    },
+    {
+      "file": "images/overlay-29.jpg",
+      "original_pdf_page": 29,
+      "description": "4.3 Pavilion"
+    },
+    {
+      "file": "images/overlay-30.jpg",
+      "original_pdf_page": 30,
+      "description": "4.4 Corporate gate and terminal"
+    },
+    {
+      "file": "images/overlay-32.jpg",
+      "original_pdf_page": 32,
+      "description": "5.1 Fan Zone, Tito\u2019s, shade structures and video board"
+    },
+    {
+      "file": "images/overlay-33.jpg",
+      "original_pdf_page": 33,
+      "description": "5.2 #1 Market and BOH"
+    },
+    {
+      "file": "images/overlay-34.jpg",
+      "original_pdf_page": 34,
+      "description": "5.3 PGA Member Club"
+    },
+    {
+      "file": "images/overlay-36.jpg",
+      "original_pdf_page": 36,
+      "description": "6.1 Club 1916 / The Overlook"
+    },
+    {
+      "file": "images/overlay-37.jpg",
+      "original_pdf_page": 37,
+      "description": "6.2 #3 and #6 pouring bars"
+    },
+    {
+      "file": "images/overlay-39.jpg",
+      "original_pdf_page": 39,
+      "description": "7.1 Chase Sapphire Lounge"
+    },
+    {
+      "file": "images/overlay-41.jpg",
+      "original_pdf_page": 41,
+      "description": "8.1 #9 green, Elijah Craig, High Noon, Mich Ultra and grandstands"
+    },
+    {
+      "file": "images/overlay-42.jpg",
+      "original_pdf_page": 42,
+      "description": "8.2 #18 green grandstands"
+    },
+    {
+      "file": "images/overlay-43.jpg",
+      "original_pdf_page": 43,
+      "description": "8.3 Player interview area, Sky/Golf Channel/CBS/ESPN/scoring and dugout grandstand"
+    },
+    {
+      "file": "images/overlay-45.jpg",
+      "original_pdf_page": 45,
+      "description": "9.1 #11 corporate viewing, mini market and pouring bar"
+    },
+    {
+      "file": "images/overlay-46.jpg",
+      "original_pdf_page": 46,
+      "description": "9.2 #12 Market, vendor dining, volunteer oasis, ecology/ShotLink operations"
+    },
+    {
+      "file": "images/overlay-48.jpg",
+      "original_pdf_page": 48,
+      "description": "10.1 #14 pouring bar"
+    },
+    {
+      "file": "images/overlay-49.jpg",
+      "original_pdf_page": 49,
+      "description": "10.2 #14 green and #15 tee suites detail"
+    },
+    {
+      "file": "images/overlay-50.jpg",
+      "original_pdf_page": 50,
+      "description": "10.3 #14 green and #15 tee suites floor plans"
+    },
+    {
+      "file": "images/overlay-51.jpg",
+      "original_pdf_page": 51,
+      "description": "10.4 #15 green viewing"
+    },
+    {
+      "file": "images/overlay-53.jpg",
+      "original_pdf_page": 53,
+      "description": "11.1 #16 Market"
+    },
+    {
+      "file": "images/overlay-54.jpg",
+      "original_pdf_page": 54,
+      "description": "11.2 #16 fairway suites detail"
+    },
+    {
+      "file": "images/overlay-55.jpg",
+      "original_pdf_page": 55,
+      "description": "11.3 #16 fairway suites floor plans"
+    },
+    {
+      "file": "images/overlay-56.jpg",
+      "original_pdf_page": 56,
+      "description": "11.4 #16 green / #17 tee detail, kitchens and shared services"
+    },
+    {
+      "file": "images/overlay-57.jpg",
+      "original_pdf_page": 57,
+      "description": "11.5 #16 green premium suites floor plans"
+    },
+    {
+      "file": "images/overlay-58.jpg",
+      "original_pdf_page": 58,
+      "description": "11.6 #17 tee premium suites floor plans"
+    },
+    {
+      "file": "images/overlay-59.jpg",
+      "original_pdf_page": 59,
+      "description": "11.7 #17 fairway Partner Hospitality floor plans"
+    },
+    {
+      "file": "images/overlay-60.jpg",
+      "original_pdf_page": 60,
+      "description": "11.8 #17 green premium suites, #18 Market and pouring bar detail"
+    },
+    {
+      "file": "images/overlay-61.jpg",
+      "original_pdf_page": 61,
+      "description": "11.9 #17 green premium suites floor plans"
+    },
+    {
+      "file": "images/overlay-63.jpg",
+      "original_pdf_page": 63,
+      "description": "12.1 Vendor compound"
+    },
+    {
+      "file": "images/overlay-64.jpg",
+      "original_pdf_page": 64,
+      "description": "12.2 Broadcast compound"
+    },
+    {
+      "file": "images/overlay-65.jpg",
+      "original_pdf_page": 65,
+      "description": "13.0 Concessions summary map"
+    },
+    {
+      "file": "images/overlay-66.jpg",
+      "original_pdf_page": 66,
+      "description": "14.0 Grandstand summary map"
+    },
+    {
+      "file": "images/overlay-67.jpg",
+      "original_pdf_page": 67,
+      "description": "14.1 #1 tee and #8 green grandstands"
+    },
+    {
+      "file": "images/overlay-68.jpg",
+      "original_pdf_page": 68,
+      "description": "14.2 #16 and #17 green grandstands"
+    },
+    {
+      "file": "images/overlay-69.jpg",
+      "original_pdf_page": 69,
+      "description": "15.0 Restrooms summary map"
+    },
+    {
+      "file": "images/overlay-70.jpg",
+      "original_pdf_page": 70,
+      "description": "15.1 Restrooms at 1/7 fairway and 3 fairway"
+    },
+    {
+      "file": "images/overlay-71.jpg",
+      "original_pdf_page": 71,
+      "description": "15.2 Restrooms at 5 green and 8 tee"
+    },
+    {
+      "file": "images/overlay-72.jpg",
+      "original_pdf_page": 72,
+      "description": "15.3 Restrooms at 11 fairway and 12 green"
+    },
+    {
+      "file": "images/overlay-73.jpg",
+      "original_pdf_page": 73,
+      "description": "15.4 Restrooms at 14 fairway and 15 tee"
+    },
+    {
+      "file": "images/overlay-74.jpg",
+      "original_pdf_page": 74,
+      "description": "15.5 Restrooms at 9/18 tee and practice range south"
+    },
+    {
+      "file": "images/overlay-75.jpg",
+      "original_pdf_page": 75,
+      "description": "16.0 Videoboards summary map"
+    },
+    {
+      "file": "images/overlay-76.jpg",
+      "original_pdf_page": 76,
+      "description": "17.0 Player oases at 5 tee and 14 tee"
+    }
+  ]
+}
